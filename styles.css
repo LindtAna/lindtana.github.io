@@ -1,0 +1,169 @@
+@import url("https://fonts.googleapis.com/css2?family=Quantico:ital,wght@0,400;0,700;1,400;1,700&display=swap");
+
+:root {
+  --bg-gradient-start: #0b0b0d;
+  --bg-gradient-end: #000000;
+  --text-primary: #ffffff;
+  --accent-primary: #c84939;
+  --font-main: "Quantico", -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+}
+
+*,
+*::before,
+*::after {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+html, body {
+  width: 100%;
+  height: 100%;
+}
+
+body {
+  font-family: var(--font-main);
+  background: linear-gradient(135deg,
+      var(--bg-gradient-start) 0%,
+      var(--bg-gradient-end) 100%);
+  color: var(--text-primary);
+  line-height: 1.6;
+  overflow-x: hidden;
+  min-height: 100vh;
+  position: relative;
+}
+
+#backgroundCanvas,
+#trailCanvas {
+  position: fixed;
+  inset: 0;
+  pointer-events: none;
+  z-index: 0;
+}
+
+#trailCanvas {
+  z-index: 1;
+}
+
+.particles-bg {
+  position: fixed;
+  inset: 0;
+  pointer-events: none;
+  opacity: 0.08;
+  z-index: 0;
+}
+
+@keyframes float {
+  0%, 100% { transform: translateY(0px) translateX(0px); }
+  33%       { transform: translateY(-20px) translateX(10px); }
+  66%       { transform: translateY(10px) translateX(-8px); }
+}
+
+.logo {
+  position: fixed;
+  top: 24px;
+  left: 28px;
+  z-index: 100;
+  display: block;
+  text-decoration: none;
+}
+
+.logo svg {
+  width: 70px;
+  height: auto;
+  transition: transform 0.3s ease, filter 0.3s ease;
+  --logo-main-color: #fbfbfb;
+  --logo-detail-color: #747474;
+  --logo-hidden-color: transparent;
+}
+
+.logo svg path {
+  transition: fill 0.4s ease;
+}
+
+.logo:hover svg {
+  --logo-main-color: #c84939;
+  --logo-detail-color: #c84939;
+  --logo-hidden-color: #c84939;
+  transform: scale(1.06);
+}
+
+.content {
+  position: relative;
+  z-index: 10;
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  padding-left: clamp(48px, 8vw, 120px);
+  padding-right: clamp(24px, 8vw, 120px);
+  padding-top: 80px;
+  padding-bottom: 60px;
+}
+
+.title {
+  font-size: clamp(2rem, 5vw, 3.4rem);
+  font-weight: 700;
+  color: var(--accent-primary);
+  line-height: 1.15;
+  letter-spacing: -0.01em;
+  margin-bottom: 1.4rem;
+  animation: fadeSlideIn 0.9s ease both;
+}
+
+.bio {
+  font-size: clamp(0.95rem, 1.8vw, 2rem);
+  color: var(--text-primary);
+  line-height: 1.75;
+  margin-bottom: 2.8rem;
+  animation: fadeSlideIn 0.9s 0.15s ease both;
+}
+
+.links {
+  display: flex;
+  flex-direction: column;
+  gap: 0.6rem;
+  animation: fadeSlideIn 0.9s 0.3s ease both;
+}
+
+.link-item {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.7rem;
+  text-decoration: none;
+  color: var(--text-primary);
+  font-size: 1.5rem;
+  font-weight: 700;
+  letter-spacing: 0.05em;
+  text-transform: uppercase;
+  padding: 0.5rem 0;
+  border-bottom: 1px solid transparent;
+  transition: color 0.25s ease, border-color 0.25s ease, gap 0.25s ease;
+  width: fit-content;
+}
+
+.link-item:hover {
+  color: var(--accent-primary);
+  border-bottom-color: var(--accent-primary);
+  gap: 1.1rem;
+}
+
+.link-arrow {
+  display: inline-block;
+  transition: transform 0.25s ease;
+}
+
+.link-item:hover .link-arrow {
+  transform: translateX(4px);
+}
+
+@keyframes fadeSlideIn {
+  from {
+    opacity: 0;
+    transform: translateY(18px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
